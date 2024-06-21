@@ -1,0 +1,67 @@
+/* Estilos previos */
+.atlas-wrapper {
+    display: flex;
+    overflow: hidden; /* Para que las nubes no se salgan del contenedor */
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+}
+
+.cloud-1, .cloud-2 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    background-color: rgba(34, 153, 153, 0.5); /* Color inicial */
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2); /* Bordes más difusos */
+    border-radius: 30%; /* Bordes redondeados */
+    filter: blur(150px); /* Difuminado para suavizar bordes */
+    animation: moveClouds1 20s linear infinite, colorShift1 30s ease-in-out infinite; /* Animaciones de movimiento y cambio de color */
+}
+
+.cloud-2 {
+    background-color: rgba(102, 0, 255, 0.5); /* Color inicial */
+    animation: moveClouds2 10s linear infinite, colorShift2 35s ease-in-out infinite; /* Animaciones de movimiento y cambio de color */
+}
+
+@keyframes moveClouds1 {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(10%) translateY(5%);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@keyframes moveClouds2 {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(-10%) translateY(-5%);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+@keyframes colorShift1 {
+    0%, 100% {
+        background-color: rgba(34, 153, 153, 0.25);
+    }
+    50% {
+        background-color: rgba(34, 153, 153, 0.4);
+    }
+}
+
+@keyframes colorShift2 {
+    0%, 100% {
+        background-color: rgba(102, 0, 255, 0.25);
+    }
+    50% {
+        background-color: rgba(102, 0, 255, 0.4);
+    }
+}

@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'cloud-atlas',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './cloud-atlas.component.html',
+  styleUrl: './cloud-atlas.component.scss'
 })
-export class AppComponent {
+export class CloudAtlasComponent {
   title = 'bioflux';
 }
