@@ -38,6 +38,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "https://coriumalpha.github.io/bioflux/",
               "budgets": [
                 {
                   "type": "initial",
@@ -95,6 +96,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
