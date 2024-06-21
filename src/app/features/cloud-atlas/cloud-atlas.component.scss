@@ -1,67 +1,56 @@
-/* Estilos previos */
 .atlas-wrapper {
     display: flex;
-    overflow: hidden; /* Para que las nubes no se salgan del contenedor */
-    height: 100vh; /* Ajusta la altura según tus necesidades */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch; /* Cambio importante para que se estiren verticalmente */
+    height: 100vh; /* Altura completa del viewport */
+    overflow: hidden;
 }
 
-.cloud-1, .cloud-2 {
-    flex: 1;
+.cloud {
+    flex: 1 1 20%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 2rem;
-    background-color: rgba(34, 153, 153, 0.5); /* Color inicial */
-    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2); /* Bordes más difusos */
-    border-radius: 30%; /* Bordes redondeados */
-    filter: blur(150px); /* Difuminado para suavizar bordes */
-    animation: moveClouds1 20s linear infinite, colorShift1 30s ease-in-out infinite; /* Animaciones de movimiento y cambio de color */
+    margin: 5px;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    filter: blur(150px); // Reducir el valor de blur para menos difuminidad
+    background-color: inherit;
 }
 
-.cloud-2 {
-    background-color: rgba(102, 0, 255, 0.5); /* Color inicial */
-    animation: moveClouds2 10s linear infinite, colorShift2 35s ease-in-out infinite; /* Animaciones de movimiento y cambio de color */
+@for $i from 1 through 10 {
+    $duration: random(10) + 5; // Duración de la animación entre 10 y 30 segundos
+    $delay: random(10); // Retraso de la animación de 0 a 20 segundos
+  
+    .cloud:nth-child(#{$i}) {
+      animation: 
+        moveClouds #{$duration}s linear infinite,
+        shapeShift #{$duration}s linear infinite $delay + s,
+        colorShift 30s ease-in-out infinite;
+    }
+  }
+  
+  @keyframes moveClouds {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-5%, 5%) scale(0.95); }
+    50% { transform: translate(5%, -5%) scale(1.05); }
+    75% { transform: translate(-5%, -5%) scale(0.95); }
+  }
+  
+  @keyframes shapeShift {
+    0%, 100% { border-radius: 50%; }
+    25% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
+    50% { border-radius: 30% 70% 70% 30% / 50% 30% 50% 70%; }
+    75% { border-radius: 60% 40% 40% 60% / 60% 60% 40% 40%; }
+  }
+  
+  @keyframes colorShift {
+    0%, 100% { filter: brightness(100%) hue-rotate(0deg) saturate(100%) blur(inherit); }
+    25% { filter: brightness(105%) hue-rotate(10deg) saturate(110%) blur(inherit); }
+    50% { filter: brightness(95%) hue-rotate(-10deg) saturate(90%) blur(inherit); }
+    75% { filter: brightness(105%) hue-rotate(5deg) saturate(105%) blur(inherit); }
 }
-
-@keyframes moveClouds1 {
-    0% {
-        transform: translateX(0) translateY(0);
-    }
-    50% {
-        transform: translateX(10%) translateY(5%);
-    }
-    100% {
-        transform: translateX(0) translateY(0);
-    }
-}
-
-@keyframes moveClouds2 {
-    0% {
-        transform: translateX(0) translateY(0);
-    }
-    50% {
-        transform: translateX(-10%) translateY(-5%);
-    }
-    100% {
-        transform: translateX(0) translateY(0);
-    }
-}
-
-@keyframes colorShift1 {
-    0%, 100% {
-        background-color: rgba(34, 153, 153, 0.25);
-    }
-    50% {
-        background-color: rgba(34, 153, 153, 0.4);
-    }
-}
-
-@keyframes colorShift2 {
-    0%, 100% {
-        background-color: rgba(102, 0, 255, 0.25);
-    }
-    50% {
-        background-color: rgba(102, 0, 255, 0.4);
-    }
-}
+  
