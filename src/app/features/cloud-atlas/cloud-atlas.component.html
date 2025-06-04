@@ -1,4 +1,15 @@
 <div class="atlas-wrapper">
-  <div class="cloud-1"></div>
-  <div class="cloud-2"></div>
+  <div
+    class="cloud"
+    *ngFor="let cloud of clouds"
+    [ngStyle]="{
+      top: cloud.top,
+      left: cloud.left,
+      width: cloud.size,
+      height: cloud.size,
+      backgroundColor: cloud.color,
+      animationDelay: cloud.delay,
+      animationDuration: cloud.duration
+    }"
+  ></div>
 </div>

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CloudAtlasComponent } from './cloud-atlas.component';
 
-describe('AppComponent', () => {
+describe('CloudAtlasComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CloudAtlasComponent],

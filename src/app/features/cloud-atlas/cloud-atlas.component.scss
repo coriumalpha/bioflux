@@ -1,67 +1,38 @@
-/* Estilos previos */
 .atlas-wrapper {
-    display: flex;
-    overflow: hidden; /* Para que las nubes no se salgan del contenedor */
-    height: 100vh; /* Ajusta la altura según tus necesidades */
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(248, 250, 255); // blanco con toque azul-violeta
 }
 
-.cloud-1, .cloud-2 {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 2rem;
-    background-color: rgba(34, 153, 153, 0.5); /* Color inicial */
-    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2); /* Bordes más difusos */
-    border-radius: 30%; /* Bordes redondeados */
-    filter: blur(150px); /* Difuminado para suavizar bordes */
-    animation: moveClouds1 20s linear infinite, colorShift1 30s ease-in-out infinite; /* Animaciones de movimiento y cambio de color */
+.cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px); // antes 120px
+  opacity: 0.6;        // antes 0.3 o 0.4
+  mix-blend-mode: multiply; // más efectivo sobre fondo blanco
+  animation-name: blobTransform, blobMorph, blobColor;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
-.cloud-2 {
-    background-color: rgba(102, 0, 255, 0.5); /* Color inicial */
-    animation: moveClouds2 10s linear infinite, colorShift2 35s ease-in-out infinite; /* Animaciones de movimiento y cambio de color */
+/* Movimiento libre + escala + rotación */
+@keyframes blobTransform {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25%  { transform: translate(25vw, -10vh) scale(1.2) rotate(5deg); }
+  50%  { transform: translate(40vw, 20vh) scale(0.85) rotate(-3deg); }
+  75%  { transform: translate(15vw, 30vh) scale(1.15) rotate(2deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
 }
 
-@keyframes moveClouds1 {
-    0% {
-        transform: translateX(0) translateY(0);
-    }
-    50% {
-        transform: translateX(10%) translateY(5%);
-    }
-    100% {
-        transform: translateX(0) translateY(0);
-    }
+@keyframes blobMorph {
+  0%, 100% { border-radius: 50% 50% 50% 50%; }
+  33%      { border-radius: 60% 40% 55% 45%; }
+  66%      { border-radius: 40% 60% 45% 55%; }
 }
 
-@keyframes moveClouds2 {
-    0% {
-        transform: translateX(0) translateY(0);
-    }
-    50% {
-        transform: translateX(-10%) translateY(-5%);
-    }
-    100% {
-        transform: translateX(0) translateY(0);
-    }
-}
-
-@keyframes colorShift1 {
-    0%, 100% {
-        background-color: rgba(34, 153, 153, 0.25);
-    }
-    50% {
-        background-color: rgba(34, 153, 153, 0.4);
-    }
-}
-
-@keyframes colorShift2 {
-    0%, 100% {
-        background-color: rgba(102, 0, 255, 0.25);
-    }
-    50% {
-        background-color: rgba(102, 0, 255, 0.4);
-    }
+@keyframes blobColor {
+  0%, 100% { filter: blur(120px); }
+  50%      { filter: blur(140px); }
 }
